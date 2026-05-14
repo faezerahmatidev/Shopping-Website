@@ -111,6 +111,7 @@ export interface CategoryConfig {
   name: string;
   image: string;
   slug: string;
+  products: Array<any>;
 }
 ```
 
@@ -123,12 +124,8 @@ export interface ProductConfig {
   image: string;
   price: number;
   stock: number;
+  count: number;
   categoryId: number;
-  slug: string;
-
-  description?: string;
-  rating?: number;
-  discount?: number;
 }
 ```
 
