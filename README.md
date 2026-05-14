@@ -1,4 +1,3 @@
-:::writing
 # 🛍️ Angular Shopping Website
 
 A modern **e-commerce web application** built with **Angular (Standalone Components)** and **Tailwind CSS** following a clean **Feature-Based Architecture**.  
