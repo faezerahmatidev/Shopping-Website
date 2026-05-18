@@ -1,0 +1,58 @@
+import { ProductConfig } from '../../models/product';
+
+export const laptopData: ProductConfig[] = [
+  {
+    id: 1,
+    name: 'laptop1',
+    image: 'assets/images/laptop.jpg',
+    price: 2000000,
+    stock: 0,
+    count: 13,
+    categoryId: 2,
+  },
+  {
+    id: 2,
+    name: 'laptop2',
+    image: 'assets/images/laptop.jpg',
+    price: 2000000,
+    stock: 0,
+    count: 25,
+    categoryId: 2,
+  },
+  {
+    id: 3,
+    name: 'laptop3',
+    image: 'assets/images/laptop.jpg',
+    price: 2000000,
+    stock: 0,
+    count: 17,
+    categoryId: 2,
+  },
+  {
+    id: 4,
+    name: 'laptop4',
+    image: 'assets/images/laptop.jpg',
+    price: 2000000,
+    stock: 0,
+    count: 16,
+    categoryId: 2,
+  },
+  {
+    id: 5,
+    name: 'laptop5',
+    image: 'assets/images/laptop.jpg',
+    price: 2000000,
+    stock: 0,
+    count: 3,
+    categoryId: 2,
+  },
+  {
+    id: 6,
+    name: 'laptop6',
+    image: 'assets/images/laptop.jpg',
+    price: 2000000,
+    stock: 0,
+    count: 8,
+    categoryId: 2,
+  },
+];

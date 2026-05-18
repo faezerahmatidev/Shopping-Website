@@ -1,0 +1,100 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-100">
+  <div class="w-full max-w-md bg-white p-8 rounded-2xl shadow-lg">
+    <h2 class="text-2xl font-bold text-center mb-6">ورود به حساب کاربری</h2>
+
+    <form [formGroup]="loginForm" (ngSubmit)="submit()" class="flex flex-col gap-4">
+      <div class="flex flex-col gap-1">
+        <input
+          formControlName="email"
+          type="email"
+          placeholder="ایمیل"
+          class="border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+
+        @if (loginForm.controls.email.touched && loginForm.controls.email.invalid) {
+          <span class="text-red-500 text-sm"> ایمیل معتبر وارد کنید </span>
+        }
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <div class="relative">
+          <input
+            formControlName="password"
+            [type]="showPassword ? 'text' : 'password'"
+            placeholder="رمز عبور"
+            class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+
+          <button
+            type="button"
+            (click)="togglePassword()"
+            class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 cursor-pointer"
+          >
+            @if (showPassword) {
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-5 h-5"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M2.25 12s3.75-6.75 9.75-6.75S21.75 12 21.75 12s-3.75 6.75-9.75 6.75S2.25 12 2.25 12z"
+                />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 15.75a3.75 3.75 0 100-7.5 3.75 3.75 0 000 7.5z"
+                />
+              </svg>
+            } @else {
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-5 h-5"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 3l18 18" />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M10.584 10.587a2.25 2.25 0 003.182 3.182"
+                />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M9.878 5.878A9.77 9.77 0 0112 5.25c6 0 9.75 6.75 9.75 6.75a17.6 17.6 0 01-4.293 4.95M6.53 6.53C4.678 7.94 3.45 9.8 2.25 12c0 0 3.75 6.75 9.75 6.75 1.757 0 3.29-.48 4.606-1.28"
+                />
+              </svg>
+            }
+          </button>
+        </div>
+
+        @if (loginForm.controls.password.touched && loginForm.controls.password.invalid) {
+          <span class="text-red-500 text-sm"> رمز عبور حداقل 6 کاراکتر باشد </span>
+        }
+      </div>
+
+      <button
+        type="submit"
+        [disabled]="loginForm.invalid"
+        class="bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 transition cursor-pointer disabled:bg-gray-400 disabled:cursor-default"
+      >
+        ورود
+      </button>
+    </form>
+
+    <div class="text-center mt-5 text-sm">
+      حساب ندارید؟
+
+      <a routerLink="/register" class="text-blue-600 hover:underline font-medium cursor-pointer">
+        ثبت نام
+      </a>
+    </div>
+  </div>
+</div>

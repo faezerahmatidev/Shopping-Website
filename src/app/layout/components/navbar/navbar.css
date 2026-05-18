@@ -1,0 +1,22 @@
+@reference "../../../../styles.css";
+
+.nav-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgb(0, 0, 0);
+}
+.nav-logo__link {
+  color: #fff;
+  font-weight: bold;
+}
+.second-level__subMenu {
+  @apply absolute p-2 right-0 top-full transition-[0.1] invisible group-hover:visible bg-white shadow-lg rounded-md w-48 z-20;
+}
+/* .second-level__subMenu > ul > li > a,
+.third-level__subMenu > ul > li > a {
+  @apply block p-2 hover:bg-gray-100 flex justify-between items-center;
+}
+.third-level__subMenu {
+  @apply absolute p-2 -left-4 top-0 transition-[0.1] -translate-x-full invisible group-hover/sub:visible bg-white shadow-lg rounded-md w-44;
+} */

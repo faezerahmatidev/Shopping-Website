@@ -1,0 +1,73 @@
+@let quantity = (quantity$ | async) ?? 0;
+<div
+  class="flex flex-col h-full w-full bg-white rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 overflow-hidden group"
+>
+  <div class="relative overflow-hidden bg-gray-50 p-4">
+    <img
+      class="w-full aspect-square object-contain cursor-pointer transition-transform duration-500 group-hover:scale-110"
+      [src]="productData.image"
+      [alt]="productData.name"
+    />
+  </div>
+
+  <div class="flex flex-col flex-grow p-4 text-right">
+    <h2
+      class="text-gray-800 font-bold text-sm md:text-base mb-2 cursor-pointer hover:text-blue-600 transition-colors line-clamp-2 h-10 md:h-12"
+    >
+      {{ productData.name }}
+    </h2>
+
+    <div class="mb-4">
+      <span class="text-[10px] md:text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
+        تعداد {{ productData.count }} عدد در انبار موجود است
+      </span>
+    </div>
+
+    <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-50">
+      <div class="flex flex-col">
+        <span class="text-blue-600 font-extrabold text-sm md:text-lg">
+          {{ productData.price }}
+        </span>
+        <span class="text-[10px] text-gray-400 -mt-1">تومان</span>
+      </div>
+      @if (quantity === 0) {
+        <button
+          (click)="cartService.addToCart(productData)"
+          class="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-lg transition-all shadow-lg active:scale-90 cursor-pointer"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            class="w-5 h-5 md:w-6 md:h-6"
+          >
+            <path
+              d="M10 11h4v2h-4v4h-2v-4H4v-2h4V7h2v4zM6 20a2 2 0 100-4 2 2 0 000 4zm10 0a2 2 0 100-4 2 2 0 000 4zM3 4h2l.4 2H20a1 1 0 01.95 1.31l-2.47 7.4A2.992 2.992 0 0115.7 17H8.34a3.002 3.002 0 01-2.97-2.41L3 4z"
+            />
+          </svg>
+        </button>
+      }
+      @if (quantity > 0) {
+        <div class="flex items-center gap-2 bg-gray-100 rounded-lg p-1">
+          <button
+            (click)="cartService.decrease(productData)"
+            class="w-7 h-7 flex items-center justify-center bg-white rounded-md hover:bg-gray-200 transition cursor-pointer"
+          >
+            -
+          </button>
+
+          <span class="min-w-6 text-center font-bold text-sm">
+            {{ quantity }}
+          </span>
+
+          <button
+            (click)="cartService.increase(productData)"
+            class="w-7 h-7 flex items-center justify-center bg-white rounded-md hover:bg-gray-200 transition cursor-pointer"
+          >
+            +
+          </button>
+        </div>
+      }
+    </div>
+  </div>
+</div>

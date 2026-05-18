@@ -1,0 +1,12 @@
+<div>
+  <img
+    [routerLink]="['/categories', categoryData.slug]"
+    [src]="categoryData.image"
+    class="cursor-pointer"
+  />
+  <span
+    [routerLink]="['/categories', categoryData.slug]"
+    class="block text-center mt-2.5 font-bold text-lg cursor-pointer"
+    >{{ categoryData.name }}</span
+  >
+</div>

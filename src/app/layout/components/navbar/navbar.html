@@ -1,0 +1,141 @@
+<nav class="container flex items-center justify-between m-auto">
+  <div class="nav-menu">
+    <ul class="flex gap-8">
+      <li>
+        <a routerLink="/home">خانه</a>
+      </li>
+
+      <li class="relative group">
+        <a routerLink="/categories" class="hover:text-black cursor-pointer"> دسته بندی محصولات </a>
+
+        <div class="second-level__subMenu py-2">
+          @for (category of categories; track category.slug) {
+            <li class="relative group/sub">
+              <a
+                [routerLink]="['/categories', category.slug]"
+                class="hover:bg-gray-100 block p-2 cursor-pointer"
+              >
+                {{ category.name }}
+              </a>
+            </li>
+          }
+        </div>
+      </li>
+
+      <li>
+        <a routerLink="/home">ارتباط با ما</a>
+      </li>
+
+      <li>
+        <a routerLink="/home">درباره ما</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="nav-actions flex items-center gap-8">
+    <div class="nav-cart relative group">
+      <button class="cursor-pointer p-2 relative">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+        >
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L23 6H6"></path>
+        </svg>
+
+        @if (cartService.getTotalCount() > 0) {
+          <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs px-1.5 rounded-full">
+            {{ cartService.getTotalCount() }}
+          </span>
+        }
+      </button>
+
+      <div
+        class="absolute left-0 top-full mt-3 w-96 bg-white rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50"
+      >
+        @if ((cartService.cartSubject | async)?.length === 0) {
+          <div class="p-6 text-center text-gray-500">سبد خرید شما خالی است</div>
+        } @else {
+          <div class="max-h-80 overflow-y-auto">
+            @for (
+              item of cartService.cartSubject | async;
+              track item.product.id + '-' + item.product.categoryId
+            ) {
+              <div class="flex items-center gap-3 p-3 border-b border-gray-200">
+                <img [src]="item.product.image" class="w-12 h-12 object-contain" />
+
+                <div class="flex flex-col flex-1 text-right">
+                  <span class="text-lg font-medium">
+                    {{ item.product.name }}
+                  </span>
+
+                  <span class="text-sm text-gray-500">
+                    {{ item.quantity }} × {{ item.product.price }}
+                  </span>
+                </div>
+
+                <button
+                  (click)="cartService.remove(item.product)"
+                  class="text-gray-400 hover:text-red-500 transition p-2 cursor-pointer"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.8"
+                    stroke="currentColor"
+                    class="w-6 h-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M6 7h12M9 7V5a1 1 0 011-1h4a1 1 0 011 1v2m-9 0l1 12a2 2 0 002 2h4a2 2 0 002-2l1-12"
+                    />
+                  </svg>
+                </button>
+              </div>
+            }
+          </div>
+
+          <div class="p-3 flex justify-between items-center">
+            <span class="font-bold text-lg"> {{ cartService.getTotalPrice() }} تومان </span>
+
+            <a
+              routerLink="/cart"
+              class="bg-blue-600 text-white px-3 py-1 rounded-lg text-lg cursor-pointer"
+            >
+              مشاهده سبد
+            </a>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="nav-user">
+      <button class="cursor-pointer" routerLink="/login">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+        >
+          <path d="M20 21a8 8 0 0 0-16 0"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+      </button>
+    </div>
+
+    <div class="nav-logo flex items-center justify-center">
+      <a routerLink="/home" class="nav-logo__link"> logo </a>
+    </div>
+  </div>
+</nav>

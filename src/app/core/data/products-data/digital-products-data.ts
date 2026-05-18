@@ -1,0 +1,58 @@
+import { ProductConfig } from '../../models/product';
+
+export const digitalProductsData: ProductConfig[] = [
+  {
+    id: 1,
+    name: 'digital-product1',
+    image: 'assets/images/digital-product.jpg',
+    price: 2000000,
+    stock: 0,
+    count: 2,
+    categoryId: 3,
+  },
+  {
+    id: 2,
+    name: 'digital-product2',
+    image: 'assets/images/digital-product.jpg',
+    price: 2000000,
+    stock: 0,
+    count: 5,
+    categoryId: 3,
+  },
+  {
+    id: 3,
+    name: 'digital-product3',
+    image: 'assets/images/digital-product.jpg',
+    price: 2000000,
+    stock: 0,
+    count: 6,
+    categoryId: 3,
+  },
+  {
+    id: 4,
+    name: 'digital-product4',
+    image: 'assets/images/digital-product.jpg',
+    price: 2000000,
+    stock: 0,
+    count: 19,
+    categoryId: 3,
+  },
+  {
+    id: 5,
+    name: 'digital-product5',
+    image: 'assets/images/digital-product.jpg',
+    price: 2000000,
+    stock: 0,
+    count: 12,
+    categoryId: 3,
+  },
+  {
+    id: 6,
+    name: 'digital-product6',
+    image: 'assets/images/digital-product.jpg',
+    price: 2000000,
+    stock: 0,
+    count: 7,
+    categoryId: 3,
+  },
+];

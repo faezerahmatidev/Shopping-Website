@@ -1,0 +1,96 @@
+<div class="max-w-6xl mx-auto p-6">
+  <h1 class="text-2xl font-bold mb-6 text-right">سبد خرید</h1>
+
+  @if ((cartService.cartSubject | async)?.length === 0) {
+    <div class="text-center p-10 bg-white rounded-xl shadow">
+      <p class="text-gray-500 text-lg">سبد خرید شما خالی است</p>
+
+      <a routerLink="/home" class="inline-block mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg">
+        بازگشت به فروشگاه
+      </a>
+    </div>
+  } @else {
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div class="lg:col-span-2 bg-white rounded-xl shadow">
+        @for (item of cartService.cartSubject | async; track item.product.id) {
+          <div class="flex items-center gap-4 p-4 border-b border-b-gray-300">
+            <img [src]="item.product.image" class="w-20 h-20 object-contain" />
+
+            <div class="flex-1 text-right">
+              <h3 class="font-semibold">
+                {{ item.product.name }}
+              </h3>
+
+              <p class="text-gray-500 text-sm">قیمت: {{ item.product.price }}</p>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <button
+                (click)="cartService.decrease(item.product)"
+                class="w-8 h-8 bg-gray-200 rounded cursor-pointer"
+              >
+                -
+              </button>
+
+              <span class="w-6 text-center">
+                {{ item.quantity }}
+              </span>
+
+              <button
+                (click)="cartService.increase(item.product)"
+                class="w-8 h-8 bg-gray-200 rounded cursor-pointer"
+              >
+                +
+              </button>
+            </div>
+
+            <button
+              (click)="cartService.remove(item.product)"
+              class="text-gray-400 hover:text-red-500 transition p-2 cursor-pointer"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.8"
+                stroke="currentColor"
+                class="w-7 h-7"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M6 7h12M9 7V5a1 1 0 011-1h4a1 1 0 011 1v2m-9 0l1 12a2 2 0 002 2h4a2 2 0 002-2l1-12"
+                />
+              </svg>
+            </button>
+          </div>
+        }
+      </div>
+
+      <div class="bg-white rounded-xl shadow p-6 h-fit">
+        <h2 class="font-bold text-lg mb-4">خلاصه سفارش</h2>
+
+        <div class="flex justify-between mb-2">
+          <span>تعداد کالا</span>
+          <span>{{ cartService.getTotalCount() }}</span>
+        </div>
+
+        <div class="flex justify-between mb-4">
+          <span>مجموع قیمت</span>
+          <span>{{ cartService.getTotalPrice() }}</span>
+        </div>
+
+        <button
+          class="w-full bg-green-600 text-white font-bold text-lg py-2 rounded-lg hover:bg-green-700 cursor-pointer"
+        >
+          ادامه خرید
+        </button>
+        <button
+          class="w-full bg-blue-600 text-white font-bold text-lg py-2 rounded-lg hover:bg-blue-700 cursor-pointer mt-2"
+        >
+          <a routerLink="/home"> بازگشت به فروشگاه </a>
+        </button>
+      </div>
+    </div>
+  }
+</div>
